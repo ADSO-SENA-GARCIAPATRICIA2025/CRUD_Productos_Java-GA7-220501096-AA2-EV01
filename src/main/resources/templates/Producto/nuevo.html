@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Footsy</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">
+            <img th:src="@{/img/logo.jpg}"
+                 alt="Footsy"
+                 class="logo">
+        </a>
+        <button class="navbar-toggler"
+                data-bs-toggle="collapse"
+                data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/productos">Productos</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- HERO -->
+<!-- HERO -->
+<section class="bg-primary text-white py-5">
+    <div class="container text-center">
+
+        <h1 class="display-4 fw-bold">
+            Nuevo Producto
+        </h1>
+
+        <p class="lead mb-4">
+            Ingresa la informacion del nuevo producto
+        </p>
+
+        </div>
+</section>
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-header bg-dark text-white">
+                    <h3 class="mb-0">
+                        <i class="bi bi-plus-circle"></i>
+                        Crear Producto
+                    </h3>
+                </div>
+
+                <div class="card-body">
+
+                    <form th:action="@{/productos/guardar}"
+                          th:object="${producto}"
+                          method="post"
+                          enctype="multipart/form-data">
+
+                        <input type="hidden"
+                               th:field="*{id}">
+
+                        <!-- Código -->
+                        <div class="mb-3">
+                            <label class="form-label">Código</label>
+                            <input type="text"
+                                   class="form-control"
+                                   th:field="*{codigo}"
+                                   placeholder="Ej: ADI-001">
+                        </div>
+
+                        <!-- Nombre -->
+                        <div class="mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input type="text"
+                                   class="form-control"
+                                   th:field="*{nombre}"
+                                   placeholder="Nombre del producto">
+                        </div>
+
+                        <!-- Descripción -->
+                        <div class="mb-3">
+                            <label class="form-label">Descripción</label>
+                            <textarea class="form-control"
+                                      rows="4"
+                                      th:field="*{descripcion}"
+                                      placeholder="Descripción del producto"></textarea>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Precio Unitario</label>
+                                <input type="number"
+                                       step="0.01"
+                                       class="form-control"
+                                       th:field="*{precioUnitario}">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Precio Venta</label>
+                                <input type="number"
+                                       step="0.01"
+                                       class="form-control"
+                                       th:field="*{precioVenta}">
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Talla</label>
+
+                                <select class="form-select"
+                                        th:field="*{infoTallas}">
+
+                                    <option value="">Seleccione una talla</option>
+
+                                    <option value="EU_35">35</option>
+                                    <option value="EU_36">36</option>
+                                    <option value="EU_37">37</option>
+                                    <option value="EU_38">38</option>
+                                    <option value="EU_39">39</option>
+                                    <option value="EU_40">40</option>
+                                    <option value="EU_41">41</option>
+                                    <option value="EU_42">42</option>
+                                    <option value="EU_43">43</option>
+                                    <option value="EU_44">44</option>
+                                    <option value="EU_45">45</option>
+                                    <option value="EU_46">46</option>
+
+                                </select>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Peso (kg)</label>
+                                <input type="number"
+                                       step="0.01"
+                                       class="form-control"
+                                       th:field="*{peso}">
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Dimensiones</label>
+                                <input type="text"
+                                       class="form-control"
+                                       th:field="*{dimensiones}"
+                                       placeholder="30x20x10 cm">
+                            </div>
+
+                        </div>
+
+                        <!-- Imagen -->
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Imagen del producto</label>
+
+                            <input type="file"
+                                   class="form-control"
+                                   name="imagen"
+                                   accept="image/*">
+
+                            <img th:src="@{'/img/' + ${producto.urlImagen}}"
+                                 width="180"
+                                 class="img-thumbnail">
+                        </div>
+
+                        <!-- Estado -->
+                        <div class="form-check form-switch mb-4">
+                            <input class="form-check-input"
+                                   type="checkbox"
+                                   th:field="*{estadoActivo}">
+                            <label class="form-check-label">
+                                Estado Activo
+                            </label>
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2">
+
+
+                           <a th:href="@{/productos}"
+                               class="btn btn-outline-secondary">
+                                Cancelar
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-dark">
+                                Guardar Producto
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<footer class="bg-dark text-white text-center py-4">
+    © 2026 Footsy
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

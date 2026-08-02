@@ -1,0 +1,96 @@
+.card-product{
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    border:none;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    transition:all .35s ease;
+    display:flex;
+    flex-direction:column;
+    height:100%;
+}
+
+.card-product:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.product-image{
+    width:100%;
+    height:240px;
+    object-fit:contain;
+    padding:25px;
+    background:#f8f9fa;
+}
+
+.card-body{
+    padding:1.5rem;
+    display:flex;
+    flex-direction:column;
+    flex:1;
+}
+
+.card-title{
+    font-size:1.3rem;
+    font-weight:700;
+    color:#222;
+    margin-bottom:5px;
+}
+
+.product-code{
+    color:#9ca3af;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    font-size:.85rem;
+    margin-bottom:18px;
+}
+
+.card-text{
+    color:#666;
+    line-height:1.6;
+    font-size:.95rem;
+}
+
+.product-info{
+    margin-top:auto;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    padding-top:20px;
+}
+
+.info-pill{
+    background:#f3f4f6;
+    border-radius:50px;
+    padding:8px 14px;
+    font-size:.85rem;
+    font-weight:600;
+    color:#444;
+}
+
+.card-footer{
+    padding:1rem 1.5rem;
+    border-top:1px solid #eee;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#fff;
+}
+
+.price{
+    color:#2563eb;
+    font-size:1.45rem;
+    font-weight:700;
+}
+
+.badge{
+    border-radius:50px;
+    padding:8px 14px;
+    font-size:.75rem;
+    font-weight:600;
+}
+
+.logo{
+    height: 45px;
+    width: auto;
+}

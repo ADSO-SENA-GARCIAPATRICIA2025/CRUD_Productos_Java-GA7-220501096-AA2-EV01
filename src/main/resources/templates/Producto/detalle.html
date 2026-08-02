@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del Producto | Footsy</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" th:href="@{/productos}">
+            <img th:src="@{/img/logo.jpg}"
+                 alt="Footsy"
+                 class="logo">
+        </a>
+
+        <div class="ms-auto">
+            <a th:href="@{/productos}" class="btn btn-outline-light">
+                <i class="bi bi-arrow-left"></i>
+                Volver
+            </a>
+        </div>
+
+    </div>
+</nav>
+
+<!-- DETALLE PRODUCTO -->
+
+<div class="container py-5">
+
+    <div class="row g-5 align-items-center">
+
+        <!-- Imagen -->
+
+        <div class="col-lg-6">
+
+            <div class="card border-0 shadow-sm">
+
+                <img th:src="@{'/img/' + ${producto.urlImagen}}"
+                     class="img-fluid p-4"
+                     alt="Producto">
+
+            </div>
+
+        </div>
+
+        <!-- Información -->
+
+        <div class="col-lg-6">
+
+            <span class="badge bg-success mb-3"
+                  th:text="${producto.estadoActivo} ? 'Activo' : 'Inactivo'">
+                Activo
+            </span>
+
+            <h1 class="fw-bold mb-2"
+                th:text="${producto.nombre}">
+                Nombre Producto
+            </h1>
+
+            <p class="text-muted"
+               th:text="${producto.codigo}">
+                Código
+            </p>
+
+            <h2 class="text-primary fw-bold mb-4"
+                th:text="'$ ' + ${producto.precioVenta}">
+                $0
+            </h2>
+
+            <p class="lead"
+               th:text="${producto.descripcion}">
+                Descripción del producto
+            </p>
+
+            <hr>
+
+            <div class="row">
+
+                <div class="col-6 mb-3">
+
+                    <strong>Talla</strong>
+
+                    <p th:text="${producto.infoTallas}">
+                        EU42
+                    </p>
+
+                </div>
+
+                <div class="col-6 mb-3">
+
+                    <strong>Peso</strong>
+
+                    <p th:text="${producto.peso}">
+                        850 g
+                    </p>
+
+                </div>
+
+                <div class="col-6">
+
+                    <strong>Dimensiones</strong>
+
+                    <p th:text="${producto.dimensiones}">
+                        30x20x10 cm
+                    </p>
+
+                </div>
+
+                <div class="col-6">
+
+                    <strong>Precio Unitario</strong>
+
+                    <p th:text="'$ ' + ${producto.precioUnitario}">
+                        $0
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="mt-4 d-flex gap-3">
+
+                <a th:href="@{/productos/editar/{id}(id=${producto.id})}"
+                   class="btn btn-warning">
+                    <i class="bi bi-pencil-square"></i>
+                    Editar
+                </a>
+
+                <a th:href="@{/productos/eliminar/{id}(id=${producto.id})}"
+                   class="btn btn-danger"
+                   onclick="return confirm('¿Eliminar este producto?')">
+                    <i class="bi bi-trash"></i>
+                    Eliminar
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer class="bg-dark text-white text-center py-4">
+    © 2026 Footsy
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
